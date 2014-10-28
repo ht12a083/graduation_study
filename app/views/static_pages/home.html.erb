@@ -1,31 +1,80 @@
 <% if signed_in? %>
-	<div class="row">
-		<aside class="span4">
-			<section>
-				<%= render 'shared/user_info' %>
-			</section>
-			<section>
-				<%= render 'shared/stats' %>
-			</section>
-			<section>
-				<%= render 'shared/micropost_form' %>
-			</section>
-		</aside>
-		<div class="span8">
-			<h3>Micropost Feed</h3>
-			<%= render 'shared/feed' %>
-		</div>
-	</div>
-<% else %>
-	<div class="center hero-unit">
-		<h1>Welcome to the Sample App</h1>
-		<h2>
-		This is the home page for the
-			<a href="http://railstutorial.jp/">Ruby on Rails Tutorial</a>
-		sample application.
-		</h2>
-		<%= link_to "Sign up now!", signup_path,
+	<%= link_to "sample app", sample_path,
 						class: "btn btn-large btn-primary" %>
+	<table border="0" cellpadding="2" cellspacing="1" bgcolor="#333333" width="60%">
+<tr align="center" bgcolor="#FFFFFF">
+<td colspan="7">2014年10月</td>
+</tr>
+<tr align="center" bgcolor="#C9DFE8">
+<td>日</td>
+<td>月</td>
+<td>火</td>
+<td>水</td>
+<td>木</td>
+<td>金</td>
+<td>土</td>
+</tr>
+<tr align="center" bgcolor="#FFFFFF">
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr align="center" bgcolor="#FFFFFF">
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+<td>10</td>
+<td>11</td>
+</tr>
+<tr align="center" bgcolor="#FFFFFF">
+<td>12</td>
+<td>13</td>
+<td>14</td>
+<td>15</td>
+<td>16</td>
+<td>17</td>
+<td>18</td>
+</tr>
+<tr align="center" bgcolor="#FFFFFF">
+<td>19</td>
+<td>20</td>
+<td>21</td>
+<td>22</td>
+<td>23</td>
+<td>24</td>
+<td>25</td>
+</tr>
+<tr align="center" bgcolor="#FFFFFF">
+<td>26</td>
+<td>27</td>
+<td>28</td>
+<td>29</td>
+<td>30</td>
+<td>31</td>
+<td></td>
+</tr>
+</table>
+
+<% else %>
+	<% provide(:title, "Sign in") %>
+<h1>Sign in</h1>
+
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(:session, url: sessions_path) do |f| %>
+			<%= f.label :email %>
+			<%= f.text_field :email %>
+			<%= f.label :password %>
+			<%= f.password_field :password %>
+			<%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+		<% end %>
+		<p>New user? <%= link_to "Sign up now!", signup_path %></p>
 	</div>
-	<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+</div>
 <% end %>
