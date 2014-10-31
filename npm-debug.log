@@ -1,0 +1,205 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', '-g', 'app.json' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.32
+4 verbose node symlink /usr/bin/node
+5 verbose cache add [ 'app.json', null ]
+6 verbose cache add name=undefined spec="app.json" args=["app.json",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'app.json',
+7 verbose parsed url   path: 'app.json',
+7 verbose parsed url   href: 'app.json' }
+8 silly lockFile 65596286-app-json app.json
+9 verbose lock app.json /home/kobujime/.npm/65596286-app-json.lock
+10 silly lockFile 65596286-app-json app.json
+11 silly lockFile 65596286-app-json app.json
+12 verbose addNamed [ 'app.json', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile 23bb0d5a-app-json app.json@
+15 verbose lock app.json@ /home/kobujime/.npm/23bb0d5a-app-json.lock
+16 silly addNameRange { name: 'app.json', range: '*', hasData: false }
+17 verbose request where is /app.json
+18 verbose request registry https://registry.npmjs.org/
+19 verbose request id ba2eb2c6f78b57a4
+20 verbose url raw /app.json
+21 verbose url resolving [ 'https://registry.npmjs.org/', './app.json' ]
+22 verbose url resolved https://registry.npmjs.org/app.json
+23 verbose request where is https://registry.npmjs.org/app.json
+24 info trying registry request attempt 1 at 04:30:06
+25 http GET https://registry.npmjs.org/app.json
+26 http 200 https://registry.npmjs.org/app.json
+27 silly registry.get cb [ 200,
+27 silly registry.get   { date: 'Fri, 31 Oct 2014 04:30:19 GMT',
+27 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+27 silly registry.get     etag: '"6QITYYKLHVPWYI7HTDIF7ED7Q"',
+27 silly registry.get     'content-type': 'application/json',
+27 silly registry.get     'cache-control': 'max-age=60',
+27 silly registry.get     'content-length': '52828',
+27 silly registry.get     'accept-ranges': 'bytes',
+27 silly registry.get     via: '1.1 varnish',
+27 silly registry.get     age: '0',
+27 silly registry.get     'x-served-by': 'cache-ty66-TYO',
+27 silly registry.get     'x-cache': 'MISS',
+27 silly registry.get     'x-cache-hits': '0',
+27 silly registry.get     'x-timer': 'S1414729819.186686,VS0,VE533',
+27 silly registry.get     vary: 'Accept',
+27 silly registry.get     'keep-alive': 'timeout=10, max=50',
+27 silly registry.get     connection: 'Keep-Alive' } ]
+28 silly addNameRange number 2 { name: 'app.json', range: '*', hasData: true }
+29 silly addNameRange versions [ 'app.json',
+29 silly addNameRange   [ '0.8.3',
+29 silly addNameRange     '0.8.4',
+29 silly addNameRange     '0.8.5',
+29 silly addNameRange     '0.8.6',
+29 silly addNameRange     '0.8.7',
+29 silly addNameRange     '0.8.8',
+29 silly addNameRange     '0.9.0',
+29 silly addNameRange     '0.9.1',
+29 silly addNameRange     '0.9.2',
+29 silly addNameRange     '0.10.0',
+29 silly addNameRange     '0.10.1',
+29 silly addNameRange     '0.11.0',
+29 silly addNameRange     '0.11.1',
+29 silly addNameRange     '0.12.0',
+29 silly addNameRange     '0.12.1',
+29 silly addNameRange     '0.13.0',
+29 silly addNameRange     '0.13.1',
+29 silly addNameRange     '0.14.0',
+29 silly addNameRange     '0.14.4',
+29 silly addNameRange     '0.14.5',
+29 silly addNameRange     '0.15.0',
+29 silly addNameRange     '0.15.1',
+29 silly addNameRange     '0.16.0',
+29 silly addNameRange     '0.17.0',
+29 silly addNameRange     '0.18.0',
+29 silly addNameRange     '0.18.1',
+29 silly addNameRange     '0.19.0',
+29 silly addNameRange     '0.19.1',
+29 silly addNameRange     '1.2.0',
+29 silly addNameRange     '1.2.1' ] ]
+30 verbose addNamed [ 'app.json', '1.2.1' ]
+31 verbose addNamed [ '1.2.1', '1.2.1' ]
+32 silly lockFile df149089-app-json-1-2-1 app.json@1.2.1
+33 verbose lock app.json@1.2.1 /home/kobujime/.npm/df149089-app-json-1-2-1.lock
+34 silly lockFile 0f8c8682--org-app-json-app-json-1-2-1-tgz https://registry.npmjs.org/app.json/-/app.json-1.2.1.tgz
+35 verbose lock https://registry.npmjs.org/app.json/-/app.json-1.2.1.tgz /home/kobujime/.npm/0f8c8682--org-app-json-app-json-1-2-1-tgz.lock
+36 verbose addRemoteTarball [ 'https://registry.npmjs.org/app.json/-/app.json-1.2.1.tgz',
+36 verbose addRemoteTarball   'ebd7bce31d5e1c452851d89280c09192b1540f96' ]
+37 info retry fetch attempt 1 at 04:30:11
+38 verbose fetch to= /tmp/npm-3256-Dr3fhhYe/registry.npmjs.org/app.json/-/app.json-1.2.1.tgz
+39 http GET https://registry.npmjs.org/app.json/-/app.json-1.2.1.tgz
+40 http 200 https://registry.npmjs.org/app.json/-/app.json-1.2.1.tgz
+41 silly lockFile 0f8c8682--org-app-json-app-json-1-2-1-tgz https://registry.npmjs.org/app.json/-/app.json-1.2.1.tgz
+42 silly lockFile 0f8c8682--org-app-json-app-json-1-2-1-tgz https://registry.npmjs.org/app.json/-/app.json-1.2.1.tgz
+43 silly lockFile df149089-app-json-1-2-1 app.json@1.2.1
+44 silly lockFile df149089-app-json-1-2-1 app.json@1.2.1
+45 silly lockFile 23bb0d5a-app-json app.json@
+46 silly lockFile 23bb0d5a-app-json app.json@
+47 silly resolved [ { name: 'app.json',
+47 silly resolved     version: '1.2.1',
+47 silly resolved     description: 'Create, validate, and render Heroku app.json manifests',
+47 silly resolved     main: 'index.js',
+47 silly resolved     bin: { 'app.json': './bin/cli', app: './bin/cli', apps: './bin/cli' },
+47 silly resolved     scripts:
+47 silly resolved      { test: 'mocha',
+47 silly resolved        build: 'npm run bundle; npm run minify; npm run bundle-lite; npm run minify-lite; npm run doc; ls -alh dist | grep app.json',
+47 silly resolved        bundle: 'browserify index.js --transform browserify-hogan --standalone App > dist/app.json.js',
+47 silly resolved        'bundle-lite': 'browserify lib/app.js --transform browserify-hogan --standalone App > dist/app.json.lite.js',
+47 silly resolved        minify: 'cat dist/app.json.js | uglifyjs -o dist/app.json.min.js',
+47 silly resolved        'minify-lite': 'cat dist/app.json.lite.js | uglifyjs -o dist/app.json.lite.min.js',
+47 silly resolved        doc: 'bin/doc',
+47 silly resolved        docs: 'bin/doc' },
+47 silly resolved     repository: { type: 'git', url: 'https://github.com/app-json/app.json' },
+47 silly resolved     keywords: [ 'app.json' ],
+47 silly resolved     author:
+47 silly resolved      { name: 'Zeke Sikelianos',
+47 silly resolved        email: 'zeke@sikelianos.com',
+47 silly resolved        url: 'http://zeke.sikelianos.com/' },
+47 silly resolved     license: 'ISC',
+47 silly resolved     bugs: { url: 'https://github.com/app-json/app.json/issues' },
+47 silly resolved     homepage: 'https://github.com/app-json/app.json',
+47 silly resolved     dependencies:
+47 silly resolved      { async: '^0.7.0',
+47 silly resolved        brfs: '^1.0.2',
+47 silly resolved        'browserify-hogan': '^0.1.2',
+47 silly resolved        chalk: '^0.4.0',
+47 silly resolved        commander: '^2.2.0',
+47 silly resolved        flatten: '0.0.1',
+47 silly resolved        'github-url-to-object': '^1.0.0',
+47 silly resolved        'bitbucket-url-to-object': '^0.2.0',
+47 silly resolved        'heroku-client': '^1.2.0',
+47 silly resolved        'hogan.js': '^2.0.0',
+47 silly resolved        ini: '^1.1.0',
+47 silly resolved        'is-url': '^1.0.0',
+47 silly resolved        marked: '^0.3.2',
+47 silly resolved        merge: '^1.1.3',
+47 silly resolved        netrc: '^0.1.3',
+47 silly resolved        open: '0.0.5',
+47 silly resolved        'redact-url': '^0.1.0',
+47 silly resolved        revalidator: '^0.1.8',
+47 silly resolved        superagent: '^0.17.0',
+47 silly resolved        'to-title-case': '^0.1.4' },
+47 silly resolved     devDependencies:
+47 silly resolved      { mocha: '^1.18.0',
+47 silly resolved        browserify: '^3.38.0',
+47 silly resolved        'uglify-js': '^2.4.13',
+47 silly resolved        cheerio: '^0.15.0',
+47 silly resolved        nixt: '^0.3.0' },
+47 silly resolved     gitHead: '2fd6db0bd288eb8da0cf72f0eb129d6dce55eeda',
+47 silly resolved     _id: 'app.json@1.2.1',
+47 silly resolved     _shasum: 'ebd7bce31d5e1c452851d89280c09192b1540f96',
+47 silly resolved     _from: 'app.json@',
+47 silly resolved     _npmVersion: '1.4.23',
+47 silly resolved     _npmUser: { name: 'zeke', email: 'zeke@sikelianos.com' },
+47 silly resolved     maintainers: [ [Object] ],
+47 silly resolved     dist:
+47 silly resolved      { shasum: 'ebd7bce31d5e1c452851d89280c09192b1540f96',
+47 silly resolved        tarball: 'http://registry.npmjs.org/app.json/-/app.json-1.2.1.tgz' },
+47 silly resolved     directories: {},
+47 silly resolved     _resolved: 'https://registry.npmjs.org/app.json/-/app.json-1.2.1.tgz' } ]
+48 info install app.json@1.2.1 into /usr/lib
+49 info installOne app.json@1.2.1
+50 verbose lib/node_modules/app.json unbuild
+51 verbose tar unpack /home/kobujime/.npm/app.json/1.2.1/package.tgz
+52 silly lockFile bc16c703-ar-usr-lib-node-modules-app-json tar:///usr/lib/node_modules/app.json
+53 verbose lock tar:///usr/lib/node_modules/app.json /home/kobujime/.npm/bc16c703-ar-usr-lib-node-modules-app-json.lock
+54 silly lockFile fdbb88d5-e-npm-app-json-1-2-1-package-tgz tar:///home/kobujime/.npm/app.json/1.2.1/package.tgz
+55 verbose lock tar:///home/kobujime/.npm/app.json/1.2.1/package.tgz /home/kobujime/.npm/fdbb88d5-e-npm-app-json-1-2-1-package-tgz.lock
+56 silly gunzTarPerm modes [ '775', '664' ]
+57 error Error: EACCES, mkdir '/usr/lib/node_modules/app.json'
+57 error  { [Error: EACCES, mkdir '/usr/lib/node_modules/app.json']
+57 error   errno: 3,
+57 error   code: 'EACCES',
+57 error   path: '/usr/lib/node_modules/app.json',
+57 error   fstream_type: 'Directory',
+57 error   fstream_path: '/usr/lib/node_modules/app.json',
+57 error   fstream_class: 'DirWriter',
+57 error   fstream_stack:
+57 error    [ '/usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+57 error      '/usr/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
+57 error      'Object.oncomplete (fs.js:107:15)' ] }
+58 error Please try running this command again as root/Administrator.
+59 error System Linux 3.13.0-29-generic
+60 error command "/usr/bin/node" "/usr/bin/npm" "install" "-g" "app.json"
+61 error cwd /home/kobujime/work/rails_projects/sample
+62 error node -v v0.10.32
+63 error npm -v 1.4.28
+64 error path /usr/lib/node_modules/app.json
+65 error fstream_path /usr/lib/node_modules/app.json
+66 error fstream_type Directory
+67 error fstream_class DirWriter
+68 error code EACCES
+69 error errno 3
+70 error stack Error: EACCES, mkdir '/usr/lib/node_modules/app.json'
+71 error fstream_stack /usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+71 error fstream_stack /usr/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
+71 error fstream_stack Object.oncomplete (fs.js:107:15)
+72 verbose exit [ 3, true ]

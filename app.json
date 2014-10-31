@@ -1,0 +1,6 @@
+{
+  "name": "graduation_study",
+  "env": {
+    "BUILDPACK_URL": "https://github.com/naoya/heroku-buildpack-perl.git#cpanm-with-psgi"
+  }
+}
