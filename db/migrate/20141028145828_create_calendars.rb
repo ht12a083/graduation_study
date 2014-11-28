@@ -3,8 +3,8 @@ class CreateCalendars < ActiveRecord::Migration
     create_table :calendars do |t|
       t.string :content
       t.integer :user_id
-      t.string :title
-      t.string :event
+      t.string :date
+      t.float :time
 
       t.timestamps
     end

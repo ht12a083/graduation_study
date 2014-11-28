@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141016151324) do
+ActiveRecord::Schema.define(version: 20141028145828) do
+
+  create_table "calendars", force: true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.string   "date"
+    t.float    "time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "calendars", ["user_id", "created_at"], name: "index_calendars_on_user_id_and_created_at"
 
   create_table "microposts", force: true do |t|
     t.string   "content"
@@ -35,7 +46,9 @@ ActiveRecord::Schema.define(version: 20141016151324) do
 
   create_table "users", force: true do |t|
     t.string   "name"
+    t.string   "student_id"
     t.string   "email"
+    t.string   "labo"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"

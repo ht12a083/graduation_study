@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<title><%= render :text => "#{params[:year]}/#{params[:month]}/#{params[:day]}" %></title>
+</head>
+<body>
+
+<left><h1><%= params[:year] %>/<%= params[:month] %>/<%= params[:day] %></h1></left>
+
+
+<%= form_for(@calendar) do |f| %>  
+  <%= f.label :content %>
+  <%= f.text_area :content, :size => "20x18" %><br />
+
+  <%= f.label :time %>
+  <%= f.text_area :time %><br />
+<% end %>
+
+<%= link_to "edit", "/edit/#{params[:year]}/#{params[:month]}/#{params[:day]}",
+						class: "btn btn-samll btn-primary" %>
+
+</body>
+</html>

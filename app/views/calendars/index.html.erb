@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<title>POSTサンプル</title>
+</head>
+<body>
+
+<p><%= @user.name %> <%= @calendar.date %></p>
+  
+
+<%= form_for(@calendar) do |f| %>  
+  <%= f.label :content %>
+  <%= f.text_area :content, :size => "20x18" %><br />
+
+  <%= f.label :time %>
+  <%= f.text_area :time %><br />
+<% end %>
+<% @array.each_slice(2) do |created_at,content| %>
+	<%= created_at %>
+	<%= content %>
+	<p></p>
+<% end %>
+</body>
+</html>

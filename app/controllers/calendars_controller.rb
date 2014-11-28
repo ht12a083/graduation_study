@@ -2,10 +2,61 @@ class CalendarsController < ApplicationController
 	before_action :signed_in_user, only: [:create, :destroy]
 	before_action :correct_user, only: :destroy
 
+	def index
+		@array = []
+      @calendar = Calendar.find_by(date: params[:date],user_id: params[:id])
+      @user = User.find(params[:id])
+      Micropost.where(:user_id => params[:id]).find_each do |micropost|
+      	if micropost.created_at.strftime('%Y%m%d') == params[:date]
+      		@array << micropost.created_at.strftime('%H%M%S').insert(2, ":").insert(5, ":")
+      		@array << micropost.content
+      	end
+      end
+    end
+
+    def show
+
+    end
+
+    def calendar
+    	@date = params[:year] +params[:month] + params[:day]
+ 		if Calendar.where(:user_id => current_user.id).find_by date: @date
+    		@calendar = Calendar.where(:user_id => current_user.id).find_by date: @date
+    	else
+    		@calendar = Calendar.new
+    	end
+
+    end
+
+    def edit
+    	 @date = params[:year] +params[:month] + params[:day]
+   
+    	if Calendar.where(:user_id => current_user.id).find_by date: @date
+    		@calendar = Calendar.where(:user_id => current_user.id).find_by date: @date
+    	else
+    		@calendar = Calendar.new(:date => @date)
+    	end
+    end
+
+    def update
+	@calendar = Calendar.find(params[:id])
+	if @calendar.update_attributes(calendar_params)
+		flash[:success] = "#{@calendar.date} updated"
+		redirect_to root_url
+	else
+		render 'edit'
+	end
+  end
+
+    def new
+    	@calednar = Calendar.new
+    	
+    end
+
 	def create
 		@calendar = current_user.calendars.build(calendar_params)
 		if @calendar.save
-			flash[:success] = "Micropost created!"
+			
 			redirect_to root_url
 		else
 			@feed_items = []
@@ -21,7 +72,7 @@ class CalendarsController < ApplicationController
 	private
 	
 		def calendar_params
-			params.require(:calendar).permit(:content)
+			params.require(:calendar).permit(:date, :content,:time)
 		end
 
 		def correct_user

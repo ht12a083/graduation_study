@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<title><%= render :text => "#{params[:year]}/#{params[:month]}/#{params[:day]}" %></title>
+</head>
+<body>
+
+<p>カレンダー編集</p>
+
+
+
+<%= form_for(@calendar) do |f| %>
+  <%= f.hidden_field :date %>
+
+  <%= f.label :content %>
+  <%= f.text_area :content, :size => "20x18" %><br />
+
+  <%= f.submit "save" %><br />
+<% end %>
+
+</body>
+</html>

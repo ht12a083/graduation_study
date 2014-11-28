@@ -12,4 +12,19 @@
 										data: { confirm: "You sure?" },
 										title: feed_item.content %>
 	<% end %>
+
+
+	<% if feed_item.content == 'stop' %>
+		<% @timer.each do |timer| %>
+			<% if timer.user == feed_item.user && timer.content == 'start' %>
+				<% time = feed_item.created_at.to_formatted_s(:number).to_i - timer.created_at.to_formatted_s(:number).to_i %>
+					<% if time > 0 %>
+						<% stop = feed_item.created_at.strftime('%H').to_f * 60 + feed_item.created_at.strftime('%M').to_f %>
+						<% start = timer.created_at.strftime('%H').to_f * 60 + timer.created_at.strftime('%M').to_f %>
+						<%= ((stop - start) / 60).round(2) %>
+					<% end %>
+				<% break %>
+			<% end %>
+		<% end %>
+	<% end %>
 </li>

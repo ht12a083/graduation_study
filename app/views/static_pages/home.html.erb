@@ -1,9 +1,54 @@
 <% if signed_in? %>
-	<%= link_to "sample app", sample_path,
+	<% if @user.id == 1 %>
+		<div class="row">
+			<aside class="span4">
+				<% @labomem.where(:labo => @user.labo).find_each do |labo| %>
+				<% unless labo.id == 1 %>
+					<% text = link_to labo.name, controller: "static_pages", action: "home",labomem: labo.id %>
+					
+					<%= labo.student_id %>
+					<%= text %>
+					<p></P>
+				<% end %>
+				<% end %>
+			</aside>
+			<% if params[:labomem] %>
+				<% sum = 0.0 %>
+				<% @calendar_all.where(:user_id => params[:labomem]).find_each do |count| %>
+					<% sum += count.time.to_f %>
+				<% end %>
+				<section>
+					合計 <%= number_with_precision(sum, :precision => 1) %> 時間
+				</section>
+				<%= link_to "11", controller: "static_pages", action: "home", month: 11,labomem: params[:labomem] %>
+				<%= link_to "12", controller: "static_pages", action: "home", month: 12,labomem: params[:labomem] %>
+				<p></p>
+				<% if params[:month] %>
+					<% @calendar_all.where(:user_id => params[:labomem]).find_each do |calendar| %>
+						<% unless calendar.time == nil %>
+							<% if calendar.date[4,2] == params[:month] %>
+								<%= link_to calendar.date[6,2], controller: "calendars", action: "index",date: calendar.date,id: calendar.user_id %>
+								<%= calendar.time %>
+								<p></p>
+							<% end %>
+						<% end %>
+					<% end %>
+				<% end %>
+			<% end %>
+		</div>
+	<% else %>
+	<div class="row">
+		<aside class="span4">
+			<section>
+				<%= link_to "micropost", sample_path,
 						class: "btn btn-large btn-primary" %>
-	<table border="0" cellpadding="2" cellspacing="1" bgcolor="#333333" width="60%">
+			</section>
+		</aside>
+		<div class="span8">
+			
+<table border="0" cellpadding="2" cellspacing="1" bgcolor="#999999" width="100%">
 <tr align="center" bgcolor="#FFFFFF">
-<td colspan="7">2014年10月</td>
+<td colspan="7">2014年11月</td>
 </tr>
 <tr align="center" bgcolor="#C9DFE8">
 <td>日</td>
@@ -18,51 +63,63 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
+<td></td>
+<td></td>
 <td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
 </tr>
 <tr align="center" bgcolor="#FFFFFF">
+<td bgcolor="#FF9999">2</td>
+<td><%= link_to '3', '/calendar/2014/11/03' %></td>
+<td>4</td>
 <td>5</td>
 <td>6</td>
 <td>7</td>
 <td>8</td>
-<td>9</td>
-<td>10</td>
-<td>11</td>
 </tr>
 <tr align="center" bgcolor="#FFFFFF">
+<td bgcolor="#FF9999">9</td>
+<td>10</td>
+<td>11</td>
 <td>12</td>
 <td>13</td>
 <td>14</td>
 <td>15</td>
-<td>16</td>
-<td>17</td>
-<td>18</td>
 </tr>
 <tr align="center" bgcolor="#FFFFFF">
+<td bgcolor="#FF9999">16</td>
+<td>17</td>
+<td>18</td>
 <td>19</td>
 <td>20</td>
 <td>21</td>
 <td>22</td>
-<td>23</td>
-<td>24</td>
-<td>25</td>
 </tr>
 <tr align="center" bgcolor="#FFFFFF">
+<td bgcolor="#FF9999">23</td>
+<td>24</td>
+<td>25</td>
 <td>26</td>
 <td>27</td>
-<td>28</td>
+<td><%= link_to '28', '/calendar/2014/11/28' %></td>
 <td>29</td>
-<td>30</td>
-<td>31</td>
+</tr>
+<tr align="center" bgcolor="#FFFFFF">
+<td bgcolor="#FF9999">30</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 </table>
 
 
-
+			
+		</div>
+	</div>
+	<% end %>
 <% else %>
 	<% provide(:title, "Sign in") %>
 <h1>Sign in</h1>
