@@ -8,10 +8,10 @@
 					<% if signed_in? %>
 						<li><%= link_to "#{current_user.student_id} #{current_user.name}", root_path %></li>
 						<li><%= link_to "プロフィール編集", edit_user_path(current_user) %></li>
-						<li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+						<li><%= link_to "ログアウト", logout_path, method: "delete" %></li>
 					<% else %>
 						<li><%= link_to "Home", root_path %></li>
-						<li><%= link_to "Sign in", signin_path %></li>
+						<li><%= link_to "ログイン", login_path %></li>
 					<% end %>
 				</ul>
 			</nav>

@@ -10,16 +10,16 @@ end
 def make_users
 	admin = User.create!(name: "miyakozima",
 						email: "miyakozima@gmail.com",
-						labo: "hisa",
+						labo: "久松研",
 						password: "miyakozima",
 						password_confirmation: "miyakozima",
 						admin: true)
 	99.times do |n|
 		random = rand(1..6)
 		if random == 1 then
-			labo = "hisa"
+			labo = "久松研"
 		else 
-			labo = "other"
+			labo = "その他"
 		end
 		name = "miyakozima#{n+1}"
 		if n+1 < 10

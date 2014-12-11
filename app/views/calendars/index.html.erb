@@ -6,20 +6,33 @@
 </head>
 <body>
 
-<p><%= @user.name %> <%= @calendar.date %></p>
+<h1><%= @user.name %> <%= @calendar.date.insert(4, "/").insert(7, "/") %></h1>
   
+<div class="row">
 
-<%= form_for(@calendar) do |f| %>  
-  <%= f.label :content %>
-  <%= f.text_area :content, :size => "20x18" %><br />
+<aside class="span3">
 
-  <%= f.label :time %>
-  <%= f.text_area :time %><br />
-<% end %>
+<p><font size="3">つぶやき</font></p>					
 <% @array.each_slice(2) do |created_at,content| %>
 	<%= created_at %>
 	<%= content %>
 	<p></p>
 <% end %>
+
+</aside>
+
+	<div class="span8">
+		<div id="sample">
+<%= form_for(@calendar) do |f| %>  
+  <%= f.label :"研究内容" %>
+  <%= f.text_area :content, :size => "20x18" %><br />
+
+<% end %>
+<% if @calendar.time.to_f > 0.0 %>
+<h4>研究時間<%= @calendar.time.floor %> 時間 <%= (number_with_precision(@calendar.time - @calendar.time.floor, :precision => 2).to_f * 300 / 5).round %> 分</h4>
+<% end %>
+</div>
+
+</div>
 </body>
 </html>

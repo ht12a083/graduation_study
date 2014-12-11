@@ -21,8 +21,22 @@ class UsersController < ApplicationController
   def create
 	@user = User.new(user_params)
 	if @user.save
+		users = User.all
+		user = @user
+		followed_users = []
+		followers = []
+		users.each do |follow|
+			unless @user.id == follow.id
+				if @user.labo == follow.labo
+					followed_users << follow
+					followers << follow
+				end
+			end
+		end
+		
+		followed_users.each { |followed| user.follow!(followed) }
+		followers.each { |follower| follower.follow!(user) }
 		sign_in @user
-		flash[:success] = "Welcome to the Sample App!"
 		redirect_to root_url
 	else
 		render 'new'
@@ -36,7 +50,7 @@ class UsersController < ApplicationController
   def update
 #	@user = User.find(params[:id])
 	if @user.update_attributes(user_params)
-		flash[:success] = "Profile updated"
+		flash[:success] = "プロフィールを更新しました"
 		redirect_to root_url
 	else
 		render 'edit'
@@ -70,7 +84,7 @@ class UsersController < ApplicationController
   private
 
 	def user_params
-		params.require(:user).permit(:name, :student_id, :email, :labo, :password,
+		params.require(:user).permit(:name, :student_id, :email, :labo, :profile, :password,
 									 :password_confirmation)
 	end
 
@@ -78,7 +92,7 @@ class UsersController < ApplicationController
 	def signed_in_user
 		unless signed_in?
 			store_location
-			redirect_to signin_url, notice: "Please sign in."
+			redirect_to signin_url, notice: "ログインしてください"
 		end
 	end
 

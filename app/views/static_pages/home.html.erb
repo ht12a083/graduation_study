@@ -1,7 +1,10 @@
 <% if signed_in? %>
 	<% if @user.id == 1 %>
+<%# 教員用のページを表示する %>
+
 		<div class="row">
-			<aside class="span4">
+			<aside class="span3">
+
 				<% @labomem.where(:labo => @user.labo).find_each do |labo| %>
 				<% unless labo.id == 1 %>
 					<% text = link_to labo.name, controller: "static_pages", action: "home",labomem: labo.id %>
@@ -12,41 +15,95 @@
 				<% end %>
 				<% end %>
 			</aside>
-			<% if params[:labomem] %>
+			<div class="span8">
+			
+			<% if params[:labomem] %> 
+			<div id="sample">
+				<% student = @labomem.find(params[:labomem]) %>
+				<font size="5"><%= student.student_id %> <%= student.name %></font>
 				<% sum = 0.0 %>
 				<% @calendar_all.where(:user_id => params[:labomem]).find_each do |count| %>
 					<% sum += count.time.to_f %>
 				<% end %>
 				<section>
-					合計 <%= number_with_precision(sum, :precision => 1) %> 時間
+					合計 <%= sum.floor %> 時間 <%= (number_with_precision(sum - sum.floor, :precision => 2).to_f * 300 / 5).round %> 分
 				</section>
-				<%= link_to "11", controller: "static_pages", action: "home", month: 11,labomem: params[:labomem] %>
-				<%= link_to "12", controller: "static_pages", action: "home", month: 12,labomem: params[:labomem] %>
+				<ul id="fat-menu" class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<% if params[:month] %>
+						<div id="sample3">
+							<%= params[:month] %> 月 <b class="caret"></b>
+						</div>
+						<% else %>
+						<div id="sample3">
+							<%= @month %> 月 <b class="caret"></b>
+						</div>
+						<% end %>
+					</a>
+					<ul class="dropdown-menu">
+						<li><%= link_to "11", controller: "static_pages", action: "home", month: 11,labomem: params[:labomem] %></li>
+						<li><%= link_to "12", controller: "static_pages", action: "home", month: 12,labomem: params[:labomem] %></li>
+						<li class="divider"></li>
+					</ul>
+				</ul>
 				<p></p>
+
 				<% if params[:month] %>
+				<div id="sample2">
 					<% @calendar_all.where(:user_id => params[:labomem]).find_each do |calendar| %>
 						<% unless calendar.time == nil %>
 							<% if calendar.date[4,2] == params[:month] %>
-								<%= link_to calendar.date[6,2], controller: "calendars", action: "index",date: calendar.date,id: calendar.user_id %>
-								<%= calendar.time %>
+								<%= link_to calendar.date[6,2], controller: "calendars", action: "index",date: calendar.date,id: calendar.user_id %><%= " 日" %>
+								<%= calendar.time.floor %><%= " 時間" %>
+								<%= (number_with_precision(calendar.time - calendar.time.floor, :precision => 2).to_f * 300 / 5).round %><%= " 分" %>
 								<p></p>
 							<% end %>
 						<% end %>
 					<% end %>
+
+				</div>
+
+				<% else %>
+				<div id="sample2">
+					<% @calendar_all.where(:user_id => params[:labomem]).find_each do |calendar| %>
+						<% unless calendar.time == nil %>
+							<% if calendar.date[4,2] == @month %>
+								<%= link_to calendar.date[6,2], controller: "calendars", action: "index",date: calendar.date,id: calendar.user_id %><%= " 日" %>
+								<%= calendar.time.floor %><%= " 時間" %>
+								<%= (number_with_precision(calendar.time - calendar.time.floor, :precision => 2).to_f * 300 / 5).round %><%= " 分" %>
+								<p></p>
+							<% end %>
+						<% end %>
+					<% end %>
+				</div>
 				<% end %>
 			<% end %>
 		</div>
+		</div>
+		</div>
 	<% else %>
+<%# 学生用のページを表示する %>
+
 	<div class="row">
 		<aside class="span4">
 			<section>
-				<%= link_to "micropost", sample_path,
-						class: "btn btn-large btn-primary" %>
+				<div class="row">
+					<aside class="span4">
+						<section>
+							<%= render 'shared/user_info' %>
+						</section>
+						<section>
+							<%= render 'shared/stats' %>
+						</section>
+						<section>
+							<%= render 'shared/micropost_form' %>
+						</section>
+					</aside>
+				</div>
+
 			</section>
-		</aside>
-		<div class="span8">
-			
-<table border="0" cellpadding="2" cellspacing="1" bgcolor="#999999" width="100%">
+			<section>
+				<table border="0" cellpadding="2" cellspacing="1" bgcolor="#999999" width="100%">
 <tr align="center" bgcolor="#FFFFFF">
 <td colspan="7">2014年11月</td>
 </tr>
@@ -114,26 +171,41 @@
 <td></td>
 </tr>
 </table>
-
-
+			</section>
+			<section>
+				<%= link_to "本日の研究内容", "/calendar/#{@year}/#{@month}/#{@day}",
+						class: "btn btn-large btn-primary" %>		
+			</section>
+		</aside>
+		
+		<div class="span8">
+			<div id="sample">
 			
-		</div>
+			<h3><%= @laboratory %>のつぶやき</h3>
+
+			<%= render 'shared/feed' %>
+			</div>
+		
+		<div>
 	</div>
 	<% end %>
 <% else %>
 	<% provide(:title, "Sign in") %>
-<h1>Sign in</h1>
+
 
 <div class="row">
 	<div class="span6 offset3">
+		<div id="sample" >
 		<%= form_for(:session, url: sessions_path) do |f| %>
-			<%= f.label :email %>
+			<h1>ログイン</h1>
+			<%= f.label :"メール" %>
 			<%= f.text_field :email %>
-			<%= f.label :password %>
+			<%= f.label :"パスワード" %>
 			<%= f.password_field :password %>
-			<%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+			<%= f.submit "ログイン", class: "btn btn-large btn-primary" %>
 		<% end %>
-		<p>New user? <%= link_to "Sign up now!", signup_path %></p>
+		<p><%= link_to "アカウント作成", signup_path %></p>
 	</div>
+</div>
 </div>
 <% end %>

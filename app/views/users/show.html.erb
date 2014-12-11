@@ -10,15 +10,27 @@
 		<section>
 			<%= render 'shared/stats' %>
 		</section>
+		<section>
+			<%= form_for(@user) do |f| %> 
+
+				<%= f.label :"プロフィール" %>
+				<%= f.text_area :profile, :readonly => true %><br />
+
+			<% end %>
+		</section>
 	</aside>
 	<div class="span8">
+		
 		<%= render 'follow_form' if signed_in? %>
 		<% if @user.microposts.any? %>
-			<h3>Microposts (<%= @user.microposts.count %>)</h3>
+		<div id="sample">
+			<h3>つぶやき (<%= @user.microposts.count %>)</h3>
 			<ol class="microposts">
 				<%= render @microposts %>
 			</ol>
 			<%= will_paginate @microposts %>
+			</div>
 		<% end %>
+	
 	</div>
 </div>

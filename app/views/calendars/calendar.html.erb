@@ -7,19 +7,37 @@
 </head>
 <body>
 
-<left><h1><%= params[:year] %>/<%= params[:month] %>/<%= params[:day] %></h1></left>
+<h1><%= params[:year] %>/<%= params[:month] %>/<%= params[:day] %></h1>
 
+<div class="row">
 
-<%= form_for(@calendar) do |f| %>  
-  <%= f.label :content %>
-  <%= f.text_area :content, :size => "20x18" %><br />
+<aside class="span3">
 
-  <%= f.label :time %>
-  <%= f.text_area :time %><br />
+<p><font size="3">つぶやき</font></p>					
+<% @array.each_slice(2) do |created_at,content| %>
+	<%= created_at %>
+	<%= content %>
+	<p></p>
 <% end %>
 
-<%= link_to "edit", "/edit/#{params[:year]}/#{params[:month]}/#{params[:day]}",
-						class: "btn btn-samll btn-primary" %>
+</aside>
 
+	<div class="span8">
+<div id="sample">
+<%= form_for(@calendar) do |f| %> 
+<%= f.hidden_field :date %>
+
+  <%= f.label :"研究内容" %>
+  <%= f.text_area :content, :size => "10x15" %><br />
+
+  <%= f.submit "保存" %><br />
+<% end %>
+<% if @calendar.time.to_f > 0.0 %>
+<h4>研究時間<%= @calendar.time.floor %> 時間 <%= (number_with_precision(@calendar.time - @calendar.time.floor, :precision => 2).to_f * 300 / 5).round %> 分</h4>
+<% end %>
+</div>
+</div>
+
+</div>
 </body>
 </html>

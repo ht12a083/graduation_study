@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20141028145828) do
     t.string   "student_id"
     t.string   "email"
     t.string   "labo"
+    t.string   "profile"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"

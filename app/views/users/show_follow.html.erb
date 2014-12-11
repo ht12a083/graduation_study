@@ -8,6 +8,7 @@
 			<span><b>Microposts:</b> <%= @user.microposts.count %></span>
 		</section>
 		<section>
+			
 			<%= render 'shared/stats' %>
 			<% if @users.any? %>
 				<div class="user_avatars">
@@ -16,9 +17,11 @@
 					<% end %>
 				</div>
 			<% end %>
+		
 		</section>
 	</aside>
 	<div class="span8">
+		<div id="sample">
 		<h3><%= @title %></h3>
 		<% if @users.any? %>
 			<ul class="users">
@@ -26,5 +29,6 @@
 			</ul>
 			<%= will_paginate %>
 		<% end %>
+		</div>
 	</div>
 </div>

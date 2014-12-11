@@ -3,7 +3,7 @@ class CalendarsController < ApplicationController
 	before_action :correct_user, only: :destroy
 
 	def index
-		@array = []
+	  @array = []
       @calendar = Calendar.find_by(date: params[:date],user_id: params[:id])
       @user = User.find(params[:id])
       Micropost.where(:user_id => params[:id]).find_each do |micropost|
@@ -19,11 +19,19 @@ class CalendarsController < ApplicationController
     end
 
     def calendar
-    	@date = params[:year] +params[:month] + params[:day]
+    	@date = params[:year] + params[:month] + params[:day]
+    	@array = []
+    		Micropost.where(:user_id => current_user.id).find_each do |micropost|
+		      	if micropost.created_at.strftime('%Y%m%d') == @date
+		      		@array << micropost.created_at.strftime('%H%M%S').insert(2, ":").insert(5, ":")
+		      		@array << micropost.content
+		      	end
+     		 end
  		if Calendar.where(:user_id => current_user.id).find_by date: @date
     		@calendar = Calendar.where(:user_id => current_user.id).find_by date: @date
+    		
     	else
-    		@calendar = Calendar.new
+    		@calendar = Calendar.new(:date => @date)
     	end
 
     end
@@ -41,7 +49,7 @@ class CalendarsController < ApplicationController
     def update
 	@calendar = Calendar.find(params[:id])
 	if @calendar.update_attributes(calendar_params)
-		flash[:success] = "#{@calendar.date} updated"
+		flash[:success] = "#{@calendar.date} を更新しました"
 		redirect_to root_url
 	else
 		render 'edit'
@@ -72,7 +80,7 @@ class CalendarsController < ApplicationController
 	private
 	
 		def calendar_params
-			params.require(:calendar).permit(:date, :content,:time)
+			params.require(:calendar).permit(:content)
 		end
 
 		def correct_user

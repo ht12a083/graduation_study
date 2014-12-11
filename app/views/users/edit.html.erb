@@ -1,25 +1,25 @@
 <% provide(:title, "Edit user") %>
-<h1>Update your profile</h1>
+
 
 <div class="row">
 	<div class="span6 offset3">
+		<div id="sample">
 		<%= form_for(@user) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
-			<%= f.label :"名前" %>
-			<%= f.text_field :name %>
-			<%= f.label :"学籍番号" %>
-			<%= f.text_field :student_id %>
-			<%= f.label :email %>
+			<h1>プロフィール編集</h1>
+			<%= f.label :"プロフィール" %>
+			<%= f.text_area :profile %>
+			<%= f.label :"メール" %>
 			<%= f.text_field :email %>
-			<%= f.label :"研究室" %>
-			<%= f.select :labo, [["久松研", "hisa"], ["その他", "other"]]%>
-			<%= f.label :password %>
+			<%= f.label :"パスワード" %>
 			<%= f.password_field :password %>
-			<%= f.label :password_confirmation, "Confirm Password" %>
+			<%= f.label :password_confirmation, "パスワード(確認)" %>
 			<%= f.password_field :password_confirmation %>
-			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+			<%= f.submit "保存", class: "btn btn-large btn-primary" %>
 		<% end %>
+		</div>
 		<%= gravatar_for(@user) %>
 		<a href="http://gravatar.com/emails">change</a>
-	</div>
+	
+</div>
 </div>
