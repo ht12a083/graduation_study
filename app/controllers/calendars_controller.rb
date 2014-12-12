@@ -31,7 +31,7 @@ class CalendarsController < ApplicationController
     		@calendar = Calendar.where(:user_id => current_user.id).find_by date: @date
     		
     	else
-    		@calendar = Calendar.new(:date => @date)
+    		@calendar = Calendar.new(:user_id => current_user.id, :date => @date)
     	end
 
     end
