@@ -6,15 +6,15 @@ class MicropostsController < ApplicationController
 		@micropost = current_user.microposts.build(micropost_params)
 		if @micropost.save
 			if @micropost.content == 'stop'
-				if Micropost.where(:user_id => current_user.id).find_by content: "start"
-				aa = Micropost.where(:user_id => current_user.id).find_by content: "start"
+				if Micropost.find_by(:user_id => current_user.id, :content => "start")
+				aa = Micropost.find_by(:user_id => current_user.id, :content => "start")
 					stop = @micropost.created_at.strftime('%H').to_f * 60 + @micropost.created_at.strftime('%M').to_f
 					start = aa.created_at.strftime('%H').to_f * 60 + aa.created_at.strftime('%M').to_f
 					calendar_flag = 0
 					Calendar.where(:user_id => current_user.id).find_each do |day|
 						if day.date == @micropost.created_at.strftime('%Y%m%d')
 							
-							Calendar.update_all(user_id: current_user.id, date: Micropost.where(:user_id => current_user.id).find_by(:content => "start").created_at.strftime('%Y%m%d'),time: ((stop - start) / 60).round(2) + day.time)
+							Calendar.update_all(user_id: current_user.id, date: aa.created_at.strftime('%Y%m%d'),time: ((stop - start) / 60).round(2) + day.time)
 							calendar_flag = 1
 						end
 					end
