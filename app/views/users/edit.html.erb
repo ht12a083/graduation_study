@@ -7,6 +7,10 @@
 		<%= form_for(@user) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 			<h1>プロフィール編集</h1>
+			<%= f.label :"名前" %>
+			<%= f.text_field :name %>
+			<%= f.label :"学籍番号" %>
+			<%= f.text_field :student_id %>
 			<%= f.label :"プロフィール" %>
 			<%= f.text_area :profile %>
 			<%= f.label :"メール" %>

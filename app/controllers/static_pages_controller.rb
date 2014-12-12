@@ -9,7 +9,6 @@ class StaticPagesController < ApplicationController
       @calendar = current_user.calendars.build
       @feed_items = current_user.feed.paginate(page: params[:page])
       @today = Time.zone.now
-      @a = Time.zone
       @year = @today.year
       @month = @today.month
       @day = @today.day
