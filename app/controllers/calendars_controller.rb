@@ -81,7 +81,7 @@ class CalendarsController < ApplicationController
 	private
 	
 		def calendar_params
-			params.require(:calendar).permit(:content,:date)
+			params.require(:calendar).permit(:content,:date,:time)
 		end
 
 		def correct_user
