@@ -31,7 +31,7 @@ class CalendarsController < ApplicationController
     		@calendar = Calendar.where(:user_id => current_user.id).find_by date: @date
     		
     	else
-    		@calendar = Calendar.new(:user_id => current_user.id, :date => @date)
+    		@calendar = Calendar.new(:date => @date,:user_id => current_user.id)
     	end
 
     end
@@ -42,12 +42,12 @@ class CalendarsController < ApplicationController
     	if Calendar.where(:user_id => current_user.id).find_by date: @date
     		@calendar = Calendar.where(:user_id => current_user.id).find_by date: @date
     	else
-    		@calendar = Calendar.new(:date => @date)
+    		@calendar = Calendar.new(:date => @date,:user_id => current_user.id)
     	end
     end
 
     def update
-	@calendar = Calendar.find(params[:id])
+	@calendar = current_user.calendars.build(calendar_params)
 	if @calendar.update_attributes(calendar_params)
 		flash[:success] = "#{@calendar.date} を更新しました"
 		redirect_to root_url
@@ -64,6 +64,7 @@ class CalendarsController < ApplicationController
 	def create
 		@calendar = current_user.calendars.build(calendar_params)
 		if @calendar.save
+			flash[:success] = "#{@calendar.date} を作成しました"
 			
 			redirect_to root_url
 		else
@@ -80,7 +81,7 @@ class CalendarsController < ApplicationController
 	private
 	
 		def calendar_params
-			params.require(:calendar).permit(:content)
+			params.require(:calendar).permit(:content,:date)
 		end
 
 		def correct_user
