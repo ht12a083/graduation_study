@@ -8,9 +8,11 @@ class StaticPagesController < ApplicationController
 		  @micropost = current_user.microposts.build
       @calendar = current_user.calendars.build
       @feed_items = current_user.feed.paginate(page: params[:page])
-      @year = Date.today.to_s.gsub('-','')[0,4]
-      @month = Date.today.to_s.gsub('-','')[4,2]
-      @day = Date.today.to_s.gsub('-','')[6,2]
+      @today = Time.zone.now
+      @a = Time.zone
+      @year = @today.year
+      @month = @today.month
+      @day = @today.day
       @signed_in_user = current_user.id
 	  end
   end
