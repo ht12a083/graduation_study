@@ -14,12 +14,12 @@ class MicropostsController < ApplicationController
 					Calendar.where(:user_id => current_user.id).find_each do |day|
 						if day.date == @micropost.created_at.strftime('%Y%m%d')
 							
-							Calendar.update_all(user_id: current_user.id, date: aa.created_at.strftime('%Y%m%d'),time: ((stop - start) / 60).round(2) + day.time)
+							Calendar.update_all(user_id: current_user.id, date: aa.created_at.strftime('%Y%m%d'),time: ((stop - start) / 60).round(2).to_f + day.time.to_f)
 							calendar_flag = 1
 						end
 					end
 					if calendar_flag == 0
-						Calendar.create(user_id: current_user.id, date: Micropost.where(:user_id => current_user.id).find_by(:content => "start").created_at.strftime('%Y%m%d'),time: ((stop - start) / 60).round(2))
+						Calendar.create(user_id: current_user.id, date: Micropost.where(:user_id => current_user.id).find_by(:content => "start").created_at.strftime('%Y%m%d'),time: ((stop - start) / 60).round(2).to_f)
 					end
 				end
 			end
