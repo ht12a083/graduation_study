@@ -6,13 +6,15 @@
 			<aside class="span3">
 
 				<% @labomem.where(:labo => @user.labo).find_each do |labo| %>
-				<% unless labo.id == 1 %>
-					<% text = link_to labo.name, controller: "static_pages", action: "home",labomem: labo.id %>
-					
-					<%= labo.student_id %>
-					<%= text %>
-					<p></P>
-				<% end %>
+					<% unless labo.id == 1 %>
+						<% unless labo.id == 2 %>
+							<% text = link_to labo.name, controller: "static_pages", action: "home",labomem: labo.id %>
+						
+							<%= labo.student_id %>
+							<%= text %>
+							<p></P>
+						<% end %>
+					<% end %>
 				<% end %>
 			</aside>
 			<div class="span8">
