@@ -14,7 +14,7 @@
 			<%= form_for(@user) do |f| %> 
 
 				<%= f.label :"プロフィール" %>
-				<%= f.text_area :profile, :readonly => true %><br />
+				<%= f.text_area :profile %><br />
 
 			<% end %>
 		</section>
@@ -26,6 +26,7 @@
 		<div id="sample">
 			<h3>つぶやき (<%= @user.microposts.count %>)</h3>
 			<ol class="microposts">
+				
 				<%= render @microposts %>
 			</ol>
 			<%= will_paginate @microposts %>
