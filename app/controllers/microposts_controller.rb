@@ -13,8 +13,9 @@ class MicropostsController < ApplicationController
 					calendar_flag = 0
 					if Calendar.find_by(:user_id => current_user.id, :date => @micropost.created_at.strftime('%Y%m%d'))
 						current_calendar = Calendar.find_by(:user_id => current_user.id, :date => @micropost.created_at.strftime('%Y%m%d'))
+							current_calendar.update(time: ((stop - start) / 60).round(2).to_f + current_calendar.time.to_f)
 							
-							current_calendar.update_all(user_id: current_user.id, date: aa.created_at.strftime('%Y%m%d'),time: ((stop - start) / 60).round(2).to_f + current_calendar.time.to_f)
+							#current_calendar.update_all(user_id: current_user.id, date: aa.created_at.strftime('%Y%m%d'),time: ((stop - start) / 60).round(2).to_f + current_calendar.time.to_f)
 							
 					
 					else
