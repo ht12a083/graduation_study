@@ -16,27 +16,6 @@ class StaticPagesController < ApplicationController
 	  end
   end
 
-  def help
-  end
-
-  def about
-  end
-
-  def contact
-  end
-
-  def calendar
-  end
-
-  def micropost
-    if signed_in?
-      @signed_in_user = current_user.id
-      @calendar = Calendar.all
-      @micropost = current_user.microposts.build
-      @feed_items = current_user.feed.paginate(page: params[:page])
-      @timer = Micropost.all
-    end
-  end
 
   def show
     render :text => "id = #{params[:id]}"

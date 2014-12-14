@@ -42,7 +42,7 @@
 				<p></p>
 
 				<% if params[:month] %>
-				<div id="sample2">
+				
 					<% @calendar_all.where(:user_id => params[:labomem]).find_each do |calendar| %>
 						<% unless calendar.time == nil %>
 							<% if calendar.date[4,2] == params[:month] %>
@@ -54,11 +54,11 @@
 						<% end %>
 					<% end %>
 
-				</div>
+				
 
 				<% else %>
 
-				<div id="sample2">
+				
 					<% @calendar_all.where(:user_id => params[:labomem]).find_each do |calendar| %>
 						<% unless calendar.time == nil %>
 							<% if calendar.date[4,2] == @month.to_s %>
@@ -69,7 +69,7 @@
 							<% end %>
 						<% end %>
 					<% end %>
-				</div>
+				
 				<% end %>
 			<% end %>
 		</div>

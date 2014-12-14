@@ -16,6 +16,7 @@ SampleApp2::Application.routes.draw do
   match '/signup', to: 'users#new', via: 'get'
   match '/login', to: 'sessions#new', via: 'get'
   match '/logout', to: 'sessions#destroy', via: 'delete'
+  match '/users', to: 'users#index', via: 'get'
   match '/sample', to: 'static_pages#micropost', via: 'get'
   match '/calendar/:year/:month/:day', to: 'calendars#calendar', via: 'get'
   match '/edit/:year/:month/:day', to: 'calendars#edit', via: 'get'
