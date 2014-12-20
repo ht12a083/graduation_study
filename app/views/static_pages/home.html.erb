@@ -8,12 +8,14 @@
 				<% @labomem.where(:labo => @user.labo).find_each do |labo| %>
 					<% unless labo.id == 1 %>
 						<% unless labo.id == 2 %>
+						<% if labo.id < 11 %>
 						<% student_array << labo.id %>
 							<% text = link_to labo.name, controller: "static_pages", action: "home",labomem: labo.id %>
 						
 							<%= labo.student_id %>
 							<%= text %>
 							<p></P>
+								<% end %>
 						<% end %>
 					<% end %>
 				<% end %>
@@ -27,8 +29,10 @@
 				<% sum = 0.0 %>
 				<% array = [] %>
 				<% @calendar_all.where(:user_id => params[:labomem]).find_each do |count| %>
+				<% unless count.date == "20141216" %>
 					<% sum += count.time.to_f %>
 					<% array << count.created_at.strftime('%m') %>
+					<% end %>
 				<% end %>
 				<section>
 					合計 <%= sum.floor %> 時間 <%= (number_with_precision(sum - sum.floor, :precision => 2).to_f * 300 / 5).round %> 分
@@ -46,10 +50,13 @@
 					<% @calendar_all.where(:user_id => params[:labomem]).find_each do |calendar| %>
 						<% unless calendar.time == nil %>
 							<% if calendar.date[4,2] == params[:month] %>
+							<% unless calendar.date[6,2] == "16" %>
 								<%= link_to calendar.date[6,2], controller: "calendars", action: "index",date: calendar.date,id: calendar.user_id %><%= " 日" %>
 								<%= calendar.time.floor %><%= " 時間" %>
 								<%= (number_with_precision(calendar.time - calendar.time.floor, :precision => 2).to_f * 300 / 5).round %><%= " 分" %>
+								
 								<p></p>
+								<% end %>
 							<% end %>
 						<% end %>
 					<% end %>
@@ -71,6 +78,15 @@
 					<% end %>
 				
 				<% end %>
+			<% else %>
+			<div class="span8">
+				<div id="sample">
+				
+					<h3><%= @laboratory %>のつぶやき</h3>
+
+					<%= render 'shared/feed' %>
+				</div>
+			</div>
 			<% end %>
 		</div>
 		</div>

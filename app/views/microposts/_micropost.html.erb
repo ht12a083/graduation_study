@@ -4,11 +4,11 @@
 	Posted <%= time_ago_in_words(micropost.created_at) %> ago.
 	</span>
 	<% if current_user?(micropost.user) %>
-	<% unless micropost.content == 'start' || micropost.content == 'stop' %>
-	<%= link_to "delete", micropost, method: :delete,
-	
-	data: { confirm: "You sure?" },
-	title: micropost.content %>
-	<% end %>
+		<% unless micropost.content == 'start' || micropost.content == 'stop' %>
+			<%= link_to "delete", micropost, method: :delete,
+			
+			data: { confirm: "You sure?" },
+			title: micropost.content %>
+		<% end %>
 	<% end %>
 </li>

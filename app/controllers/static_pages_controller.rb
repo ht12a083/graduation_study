@@ -13,6 +13,7 @@ class StaticPagesController < ApplicationController
       @month = @today.month
       @day = @today.day
       @signed_in_user = current_user.id
+      @button = current_user.microposts.build
 	  end
   end
 

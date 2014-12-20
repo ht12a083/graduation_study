@@ -6,13 +6,10 @@ SampleApp2::Application.routes.draw do
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
-  resources :calendars, only: [:destroy, :show, :create, :new, :update]
+  resources :calendars, only: [:destroy, :create, :new, :update]
   resources :relationships, only: [:create, :destroy]
   root 'static_pages#home'
   match '/signup', to: 'users#new', via: 'get'
-  match '/help', to: 'static_pages#help', via: 'get'
-  match '/about', to: 'static_pages#about', via: 'get'
-  match '/contact', to: 'static_pages#contact', via: 'get'
   match '/signup', to: 'users#new', via: 'get'
   match '/login', to: 'sessions#new', via: 'get'
   match '/logout', to: 'sessions#destroy', via: 'delete'
@@ -23,9 +20,7 @@ SampleApp2::Application.routes.draw do
   match '/index', to: 'calendars#index', via: 'get'
   post '/calendars/:date' => 'calendars#calendar'
   post "static_pages/show" => "static_pages#show"
-  post '/calendar/update' => 'calendars#update'
-  post '/calendars/:id' => 'calendars#update'
-  match '/sample/:id', to: 'static_pages#sample', via: 'get'
+  post '/calendar/:date' => 'calendars#update'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

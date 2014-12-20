@@ -7,16 +7,17 @@ class MicropostsController < ApplicationController
 		if @micropost.save
 			if @micropost.content == 'stop'
 				if Micropost.find_by(:user_id => current_user.id, :content => "start")
-				aa = Micropost.find_by(:user_id => current_user.id, :content => "start")
-					stop = @micropost.created_at.strftime('%H').to_f * 60 + @micropost.created_at.strftime('%M').to_f
-					start = aa.created_at.strftime('%H').to_f * 60 + aa.created_at.strftime('%M').to_f
-					calendar_flag = 0
-					if Calendar.find_by(:user_id => current_user.id, :date => @micropost.created_at.strftime('%Y%m%d'))
+					start_time = Micropost.find_by(:user_id => current_user.id, :content => "start")
+					if start_time.created_at.strftime('%Y%m%d') ==  @micropost.created_at.strftime('%Y%m%d')
+						stop = @micropost.created_at.strftime('%H').to_f * 60 + @micropost.created_at.strftime('%M').to_f
+						start = start_time.created_at.strftime('%H').to_f * 60 + start_time.created_at.strftime('%M').to_f
+					else
+						stop = @micropost.created_at.strftime('%H').to_f * 60 + @micropost.created_at.strftime('%M').to_f + 1440
+						start = start_time.created_at.strftime('%H').to_f * 60 + start_time.created_at.strftime('%M').to_f
+					end
+					if Calendar.find_by(:user_id => current_user.id, :date => start_time.created_at.strftime('%Y%m%d'))
 						current_calendar = Calendar.find_by(:user_id => current_user.id, :date => @micropost.created_at.strftime('%Y%m%d'))
-							current_calendar.update(time: ((stop - start) / 60).round(2).to_f + current_calendar.time.to_f)
-							
-							#current_calendar.update_all(user_id: current_user.id, date: aa.created_at.strftime('%Y%m%d'),time: ((stop - start) / 60).round(2).to_f + current_calendar.time.to_f)
-							
+							current_calendar.update(time: ((stop - start) / 60).round(2).to_f + current_calendar.time.to_f )							
 					
 					else
 						Calendar.create(user_id: current_user.id, date: Micropost.where(:user_id => current_user.id).find_by(:content => "start").created_at.strftime('%Y%m%d'),time: ((stop - start) / 60).round(2).to_f)
@@ -30,7 +31,7 @@ class MicropostsController < ApplicationController
 		else
 			@feed_items = []
 			@user = current_user
-			render 'static_pages/home'
+			redirect_to root_url
 		end
 	end
 

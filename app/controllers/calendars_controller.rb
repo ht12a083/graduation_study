@@ -28,31 +28,20 @@ class CalendarsController < ApplicationController
 		      	end
      		 end
  		if Calendar.where(:user_id => current_user.id).find_by date: @date
-    		@calendar = Calendar.where(:user_id => current_user.id).find_by date: @date
+    		@calendar = Calendar.find_by(:user_id => current_user.id, :date => "#{@date}")
     		
     	else
     		@calendar = Calendar.new(:date => @date,:user_id => current_user.id)
     	end
-
     end
 
-    def edit
-    	 @date = params[:year] +params[:month] + params[:day]
-   
-    	if Calendar.where(:user_id => current_user.id).find_by date: @date
-    		@calendar = Calendar.where(:user_id => current_user.id).find_by date: @date
-    	else
-    		@calendar = Calendar.new(:date => @date,:user_id => current_user.id)
-    	end
-    end
-
-    def update
-	@calendar = current_user.calendars.build(calendar_params)
-	if @calendar.update_attributes(calendar_params)
+    def update	
+	@calendar = Calendar.find(params[:id])
+	if @calendar.update(calendar_params)
 		flash[:success] = "#{@calendar.date} を更新しました"
 		redirect_to root_url
 	else
-		render 'edit'
+		render 'calendar'
 	end
   end
 

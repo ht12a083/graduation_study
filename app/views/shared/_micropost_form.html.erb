@@ -1,26 +1,51 @@
+<table><tr>
 <%= form_for(@micropost) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 	<div class="field">
 		<%= f.text_area :content %>
 	</div>
-	<%= f.submit "つぶやく", class: "btn btn-large btn-primary" %>
+	<td>
+		<%= f.submit "つぶやく", class: "btn btn-large btn-primary" %>
+	</td>
+<% end %>
+<td>
+</td>
 	<% start = Micropost.find_by(:user_id => current_user, :content => "start") %>
 	<% stop = Micropost.find_by(:user_id => current_user, :content => "stop") %>
-	<%= form_for(@micropost) do |f| %>
+<% if start && stop %>
+<%= form_for(@micropost) do |f| %>
 	<% if start.created_at > stop.created_at %>
-		
+		<td>
 		<%= f.hidden_field :content, :value => "stop" %>
 		<%= f.submit "研究終わり", class: "btn btn-large btn-primary" %>
+		</td>
 	<% elsif start.created_at < stop.created_at %>
-	
+		<td>
 		<%= f.hidden_field :content, :value => "start" %>
 		<%= f.submit "研究開始", class: "btn btn-large btn-primary" %>
+		</td>
 	<% else %>
-	
+		<td>
 		<%= f.hidden_field :content, :value => "start" %>
 		<%= f.submit "研究開始", class: "btn btn-large btn-primary" %>	
+		</td>
 	<% end %>
-	<% end %>
-
 <% end %>
+<% elsif start %>
+<%= form_for(@micropost) do |f| %>
+	<td>
+		<%= f.hidden_field :content, :value => "stop" %>
+		<%= f.submit "研究終わり", class: "btn btn-large btn-primary" %>
+		</td>
+		<% end %>
+<% else %>
+<%= form_for(@micropost) do |f| %>
+		<td>
+		<%= f.hidden_field :content, :value => "start" %>
+		<%= f.submit "研究開始", class: "btn btn-large btn-primary" %>	
+		</td>
+	<% end %>
+<% end %>
+</tr>
+</table>
 
