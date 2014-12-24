@@ -29,10 +29,10 @@
 				<% sum = 0.0 %>
 				<% array = [] %>
 				<% @calendar_all.where(:user_id => params[:labomem]).find_each do |count| %>
-				<% unless count.date == "20141216" %>
+				
 					<% sum += count.time.to_f %>
 					<% array << count.created_at.strftime('%m') %>
-					<% end %>
+					
 				<% end %>
 				<section>
 					合計 <%= sum.floor %> 時間 <%= (number_with_precision(sum - sum.floor, :precision => 2).to_f * 300 / 5).round %> 分
@@ -50,13 +50,13 @@
 					<% @calendar_all.where(:user_id => params[:labomem]).find_each do |calendar| %>
 						<% unless calendar.time == nil %>
 							<% if calendar.date[4,2] == params[:month] %>
-							<% unless calendar.date[6,2] == "16" %>
+							
 								<%= link_to calendar.date[6,2], controller: "calendars", action: "index",date: calendar.date,id: calendar.user_id %><%= " 日" %>
 								<%= calendar.time.floor %><%= " 時間" %>
 								<%= (number_with_precision(calendar.time - calendar.time.floor, :precision => 2).to_f * 300 / 5).round %><%= " 分" %>
 								
 								<p></p>
-								<% end %>
+								
 							<% end %>
 						<% end %>
 					<% end %>
@@ -113,66 +113,12 @@
 
 			</section>
 			<section>
-				<table border="0" cellpadding="2" cellspacing="1" bgcolor="#333333" width="100%">
-<tr align="center" bgcolor="#FFFFFF">
-<td colspan="7">2014年12月</td>
-</tr>
-<tr align="center" bgcolor="#CCCCCC">
-<td>日</td>
-<td>月</td>
-<td>火</td>
-<td>水</td>
-<td>木</td>
-<td>金</td>
-<td>土</td>
-</tr>
-<tr align="center" bgcolor="#FFFFFF">
-<td></td>
-<td><%= link_to '1', "/calendar/2014/12/01" %></td>
-<td><%= link_to '2', '/calendar/2014/12/02' %></td>
-<td><%= link_to '3', '/calendar/2014/12/03' %></td>
-<td><%= link_to '4', '/calendar/2014/12/04' %></td>
-<td><%= link_to '5', '/calendar/2014/12/05' %></td>
-<td><%= link_to '6', '/calendar/2014/12/06' %></td>
-</tr>
-<tr align="center" bgcolor="#FFFFFF">
-<td><%= link_to '7', '/calendar/2014/12/07' %></td>
-<td><%= link_to '8', '/calendar/2014/12/08' %></td>
-<td><%= link_to '9', '/calendar/2014/12/09' %></td>
-<td><%= link_to '10', '/calendar/2014/12/10' %></td>
-<td><%= link_to '11', '/calendar/2014/12/11' %></td>
-<td><%= link_to '12', '/calendar/2014/12/12' %></td>
-<td><%= link_to '13', '/calendar/2014/12/13' %></td>
-</tr>
-<tr align="center" bgcolor="#FFFFFF">
-<td><%= link_to '14', '/calendar/2014/12/14' %></td>
-<td><%= link_to '15', '/calendar/2014/12/15' %></td>
-<td><%= link_to '16', '/calendar/2014/12/16' %></td>
-<td><%= link_to '17', '/calendar/2014/12/17' %></td>
-<td><%= link_to '18', '/calendar/2014/12/18' %></td>
-<td><%= link_to '19', '/calendar/2014/12/19' %></td>
-<td><%= link_to '20', '/calendar/2014/12/20' %></td>
-</tr>
-<tr align="center" bgcolor="#FFFFFF">
-<td><%= link_to '21', '/calendar/2014/12/21' %></td>
-<td><%= link_to '22', '/calendar/2014/12/22' %></td>
-<td><%= link_to '23', '/calendar/2014/12/23' %></td>
-<td><%= link_to '24', '/calendar/2014/12/24' %></td>
-<td><%= link_to '25', '/calendar/2014/12/25' %></td>
-<td><%= link_to '26', '/calendar/2014/12/26' %></td>
-<td><%= link_to '27', '/calendar/2014/12/27' %></td>
-</tr>
-<tr align="center" bgcolor="#FFFFFF">
-<td><%= link_to '28', '/calendar/2014/12/28' %></td>
-<td><%= link_to '29', '/calendar/2014/12/29' %></td>
-<td><%= link_to '30', '/calendar/2014/12/30' %></td>
-<td><%= link_to '31', '/calendar/2014/12/31' %></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</table>
 
+				<% if params[:calendar] %>
+					<%= render "shared/calendar_#{params[:calendar]}" %>
+				<% else %>
+					<%= render "shared/calendar_#{@year}#{@month}" %>
+				<% end %>
 
 			</section>
 			<section>

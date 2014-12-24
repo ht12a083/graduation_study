@@ -30,7 +30,7 @@
 
   <%= f.label :"研究内容" %>
   <%= f.text_area :content, :size => "10x15" %><br />
-<%= f.text_field :time %>
+
   <%= f.submit "保存" %><br />
 <% end %>
 <% if @calendar.time.to_f > 0.0 %>
