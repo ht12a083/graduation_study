@@ -6,6 +6,7 @@
 		<div id="sample" >
 		<%= form_for(@user) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
+			
 			<h1>アカウント作成</h1>
 			<%= f.label :"名前" %>
 			<%= f.text_field :name %>

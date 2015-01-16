@@ -26,7 +26,7 @@ class CalendarsController < ApplicationController
 		      		@array << micropost.created_at.strftime('%H%M%S').insert(2, ":").insert(5, ":")
 		      		@array << micropost.content
 		      	end
-     		 end
+     		end
  		if Calendar.where(:user_id => current_user.id).find_by date: @date
     		@calendar = Calendar.find_by(:user_id => current_user.id, :date => "#{@date}")
     		

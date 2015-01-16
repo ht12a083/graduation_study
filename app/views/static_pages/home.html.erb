@@ -4,16 +4,16 @@
 
 		<div class="row">
 			<aside class="span3">
-				<% student_array = [] %>
-				<% @labomem.where(:labo => @user.labo).find_each do |labo| %>
+				<%# student_array = [] %>
+				<% @labomem.where(:labo => @user.labo).each do |labo| %>
 					<% unless labo.id == 1 %>
 						<% unless labo.id == 2 %>
 						<% if labo.id < 11 %>
-						<% student_array << labo.id %>
-							<% text = link_to labo.name, controller: "static_pages", action: "home",labomem: labo.id %>
-						
+						<%# student_array << labo.id %>
 							<%= labo.student_id %>
-							<%= text %>
+							<%= link_to labo.name, controller: "static_pages", action: "home",labomem: labo.id %>
+				
+							
 							<p></P>
 								<% end %>
 						<% end %>
