@@ -1,21 +1,26 @@
 <% if signed_in? %>
-	<% if @user.id == 1 or @user.id == 2 %>
+	<% if @user.id == 1 or @user.id == 2 or @user.id == 3 or
+		  @user.id == 4 or @user.id == 5 or @user.id == 6 or
+		  @user.id == 7 or @user.id == 8 or @user.id == 9 or
+		  @user.id == 10 or @user.id == 11 %>
 <%# 教員用のページを表示する %>
 
 		<div class="row">
 			<aside class="span3">
 				<%# student_array = [] %>
 				<% @labomem.where(:labo => @user.labo).each do |labo| %>
-					<% unless labo.id == 1 %>
+					<% unless labo.id == 1 or labo.id == 2 or labo.id == 3 or labo.id == 4 or 
+							  labo.id == 5 or labo.id == 6 or labo.id == 7 or labo.id == 8 or
+							  labo.id == 9 or labo.id == 10 or labo.id == 11 %>
 						<% unless labo.id == 2 %>
-						<% if labo.id < 11 %>
+						
 						<%# student_array << labo.id %>
 							<%= labo.student_id %>
 							<%= link_to labo.name, controller: "static_pages", action: "home",labomem: labo.id %>
 				
 							
 							<p></P>
-								<% end %>
+								
 						<% end %>
 					<% end %>
 				<% end %>
@@ -108,6 +113,7 @@
 						<section>
 							<%= render 'shared/micropost_form' %>
 						</section>
+
 					</aside>
 				</div>
 
@@ -138,10 +144,12 @@
 		<div>
 	</div>
 	<% end %>
+
+
 <% else %>
 	<% provide(:title, "Sign in") %>
 
-
+<%# ログインしていない場合 %>
 <div class="row">
 	<div class="span6 offset3">
 		<div id="sample" >
