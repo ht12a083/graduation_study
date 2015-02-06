@@ -12,16 +12,9 @@
 					<% unless labo.id == 1 or labo.id == 2 or labo.id == 3 or labo.id == 4 or 
 							  labo.id == 5 or labo.id == 6 or labo.id == 7 or labo.id == 8 or
 							  labo.id == 9 or labo.id == 10 or labo.id == 11 %>
-						<% unless labo.id == 2 %>
-						
-						<%# student_array << labo.id %>
-							<%= labo.student_id %>
-							<%= link_to labo.name, controller: "static_pages", action: "home",labomem: labo.id %>
-				
-							
-							<p></P>
-								
-						<% end %>
+						<%= labo.student_id %>
+						<%= link_to labo.name, controller: "static_pages", action: "home",labomem: labo.id %>
+						<p></P>								
 					<% end %>
 				<% end %>
 			</aside>
@@ -36,32 +29,40 @@
 				<% @calendar_all.where(:user_id => params[:labomem]).find_each do |count| %>
 				
 					<% sum += count.time.to_f %>
-					<% array << count.created_at.strftime('%m') %>
-					
+					<% array << count.date[4,2] %>
 				<% end %>
 				<section>
 					合計 <%= sum.floor %> 時間 <%= (number_with_precision(sum - sum.floor, :precision => 2).to_f * 300 / 5).round %> 分
 				</section>
+				<table><tr>
 				<% array.uniq.each do |uniq| %>
+				<td>
 				<div id="sample3">
+					
 					<%= link_to "#{uniq} 月", controller: "static_pages", action: "home", month: uniq,labomem: params[:labomem] %>
+				
 				</div>
+				</td>
 				<% end %>
+			</tr></table>
 				
 				<p></p>
 
 				<% if params[:month] %>
 				
 					<% @calendar_all.where(:user_id => params[:labomem]).find_each do |calendar| %>
-						<% unless calendar.time == nil %>
+						<% unless calendar.time == nil && calendar.content == nil %>
 							<% if calendar.date[4,2] == params[:month] %>
 							
 								<%= link_to calendar.date[6,2], controller: "calendars", action: "index",date: calendar.date,id: calendar.user_id %><%= " 日" %>
-								<%= calendar.time.floor %><%= " 時間" %>
-								<%= (number_with_precision(calendar.time - calendar.time.floor, :precision => 2).to_f * 300 / 5).round %><%= " 分" %>
+								<% unless calendar.time == nil %>
+									<%= calendar.time.floor %><%= " 時間" %>
+									<%= (number_with_precision(calendar.time - calendar.time.floor, :precision => 2).to_f * 300 / 5).round %><%= " 分" %>
 								
-								<p></p>
-								
+									<p></p>
+								<% else %>
+									<%= "0 時間 0 分" %> 
+								<% end %>
 							<% end %>
 						<% end %>
 					<% end %>
@@ -72,12 +73,17 @@
 
 				
 					<% @calendar_all.where(:user_id => params[:labomem]).find_each do |calendar| %>
-						<% unless calendar.time == nil %>
+						<% unless calendar.time == nil && calendar.content == nil %>
 							<% if calendar.date[4,2] == @month.to_s %>
 								<%= link_to calendar.date[6,2], controller: "calendars", action: "index",date: calendar.date,id: calendar.user_id %><%= " 日" %>
-								<%= calendar.time.floor %><%= " 時間" %>
-								<%= (number_with_precision(calendar.time - calendar.time.floor, :precision => 2).to_f * 300 / 5).round %><%= " 分" %>
-								<p></p>
+								<% unless calendar.time == nil %>
+									<%= calendar.time.floor %><%= " 時間" %>
+									<%= (number_with_precision(calendar.time - calendar.time.floor, :precision => 2).to_f * 300 / 5).round %><%= " 分" %>
+								
+									<p></p>
+								<% else %>
+									<%= "0 時間 0 分" %> 
+								<% end %>
 							<% end %>
 						<% end %>
 					<% end %>
