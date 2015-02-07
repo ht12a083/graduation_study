@@ -8,11 +8,11 @@
 			Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
 		</span>
 	<% if current_user?(feed_item.user) %>
-	<% unless feed_item.content == "start" || feed_item.content == "stop" %>
-		<%= link_to "delete", feed_item, method: :delete,
-										data: { confirm: "You sure?" },
-										title: feed_item.content %>
-	<% end %>
+		<% unless feed_item.content == "start" || feed_item.content == "stop" %>
+			<%= link_to "delete", feed_item, method: :delete,
+											data: { confirm: "You sure?" },
+											title: feed_item.content %>
+		<% end %>
 	<% end %>
 
 

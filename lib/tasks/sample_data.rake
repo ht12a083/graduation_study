@@ -14,38 +14,35 @@ def make_users
 #						password: "miyakozima",
 #						password_confirmation: "miyakozima",
 #						admin: true)
-	11.times do |n|
+	10.times do |n|
 		if n == 0 then
-			name = "なわてん"
-			labo = "なわてん"
-		elsif n == 1 then
 			name = "大西"
 			labo = "大西研"
-		elsif n == 2 then
+		elsif n == 1 then
 			name = "兼宗"
 			labo = "兼宗研"
-		elsif n == 3 then
+		elsif n == 2 then
 			name = "北嶋"
 			labo = "北嶋研"
-		elsif n == 4 then
+		elsif n == 3 then
 			name = "鴻巣"
 			labo = "鴻巣研"
-		elsif n == 5 then
+		elsif n == 4 then
 			name = "小枝"
 			labo = "小枝研"
-		elsif n == 6 then
+		elsif n == 5 then
 			name = "南角"
 			labo = "南角研"
-		elsif n == 7 then
+		elsif n == 6 then
 			name = "登尾"
 			labo = "登尾研"
-		elsif n == 8 then
+		elsif n == 7 then
 			name = "久松"
 			labo = "久松研"
-		elsif n == 9 then
+		elsif n == 8 then
 			name = "升谷"
 			labo = "升谷研"
-		elsif n == 10 then
+		elsif n == 9 then
 			name = "渡邊"
 			labo = "渡邊研"
 		end
