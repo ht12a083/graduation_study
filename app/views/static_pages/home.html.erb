@@ -11,7 +11,7 @@
 				<% @labomem.where(:labo => @user.labo).each do |labo| %>
 					<% unless labo.id == 1 or labo.id == 2 or labo.id == 3 or labo.id == 4 or 
 							  labo.id == 5 or labo.id == 6 or labo.id == 7 or labo.id == 8 or
-							  labo.id == 9 or labo.id == 10 or labo.id == 11 %>
+							  labo.id == 9 or labo.id == 10 %>
 						<%= labo.student_id %>
 						<%= link_to labo.name, controller: "static_pages", action: "home",labomem: labo.id %>
 						<p></P>								
