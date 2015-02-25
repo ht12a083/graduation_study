@@ -1,6 +1,2 @@
-# Ruby on Rails チュートリアル：サンプルアプリケーション
+# Ruby on Rails 卒業研究管理アプリケーション
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-これは、以下のためのサンプルアプリケーションです。
-[*Ruby on Rails Tutorial*](http://railstutorial.jp/)
-by [Michael Hartl](http://michaelhartl.com/).
