@@ -8,10 +8,10 @@ Ruby on Rails 卒業研究管理アプリケーション
 
 お試し用のアカウントとして、以下を用意しました。　　
 * 教員ユーザ  
-mail: ht00a008  
+mail: ht00a008@oecu.jp  
 pass: miyakozima
 * 学生ユーザ  
-mail: ht12a083  
+mail: ht12a083@oecu.jp  
 pass: miyakozima
 
 ## 使い方
