@@ -46,9 +46,9 @@ def make_users
 			student_id = "ht00a0#{n+1}"
 		end
 		if n+1 < 10
-			email = "ht00a00#{n+1}"
+			email = "ht00a00#{n+1}@oecu.jp"
 		else
-			email = "ht00a0#{n+1}"
+			email = "ht00a0#{n+1}@oecu.jp"
 		end
 
 		password = "miyakozima"
