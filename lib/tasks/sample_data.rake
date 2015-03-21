@@ -2,18 +2,11 @@ namespace :db do
 	desc "Fill database with sample data"
 	task populate: :environment do
 		make_users
-#		make_microposts
-#		make_relationships
 	end
 end
 
 def make_users
-#	admin = User.create!(name: "miyakozima",
-#						email: "miyakozima@gmail.com",
-#						labo: "久松研",
-#						password: "miyakozima",
-#						password_confirmation: "miyakozima",
-#						admin: true)
+
 	10.times do |n|
 		if n == 0 then
 			name = "大西"
@@ -52,7 +45,12 @@ def make_users
 		else
 			student_id = "ht00a0#{n+1}"
 		end
-		email = "miyakozima#{n+1}@gmail.com"
+		if n+1 < 10
+			email = "ht00a00#{n+1}"
+		else
+			email = "ht00a0#{n+1}"
+		end
+
 		password = "miyakozima"
 		User.create!(name: name,
 					student_id: student_id,
