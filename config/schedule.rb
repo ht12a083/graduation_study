@@ -21,6 +21,3 @@
 set :environment, :development
 set :output, {:error => 'log/error.log', :standard => 'log/cron.log'}
 
-every 1.day, :at => '0:00 am' do
-  runner "Test.hoge"
-end
